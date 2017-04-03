@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- These are the options displayed in the Type drop-down Spinner -->
+    <string-array name="array_type_options">
+        <item>@string/type_smartphone</item>
+        <item>@string/type_featurephone</item>
+        <item>@string/unknown</item>
+    </string-array>
+
+    <!-- These are the options displayed in the RAM drop-down Spinner -->
+    <string-array name="array_ram_options">
+        <item>@string/ram_1GBminus</item>
+        <item>@string/ram_1GB</item>
+        <item>@string/ram_2GB</item>
+        <item>@string/ram_3GB</item>
+        <item>@string/ram_4GB</item>
+        <item>@string/ram_4GBplus</item>
+        <item>@string/unknown</item>
+    </string-array>
+
+    <!-- These are the options displayed in the storage drop-down Spinner -->
+    <string-array name="array_storage_options">
+        <item>@string/storage_8GBminus</item>
+        <item>@string/storage_8GB</item>
+        <item>@string/storage_16GB</item>
+        <item>@string/storage_32GB</item>
+        <item>@string/storage_64GB</item>
+        <item>@string/storage_128GB</item>
+        <item>@string/storage_128GBplus</item>
+        <item>@string/unknown</item>
+    </string-array>
+</resources>

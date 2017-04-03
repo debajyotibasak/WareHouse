@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">WareHouse</string>
+    <string name="action_insert_dummy_data">Insert Dummy Data</string>
+    <string name="action_delete_all_entries">Delete All Entries</string>
+    <string name="category_overview">Overview</string>
+    <string name="hint_mobile_name">Mobile Name</string>
+    <string name="hint_phone_company_name">Company</string>
+    <string name="category_type">Type</string>
+    <string name="category_software_version">Software Version</string>
+    <string name="hint_software_version">Android or iOS Version</string>
+    <string name="category_ram">RAM</string>
+    <string name="category_storage">Storage</string>
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
+    <string name="type_smartphone">Smart phone</string>
+    <string name="type_featurephone">Feature phone</string>
+    <string name="ram_1GBminus">less than 1 GB</string>
+    <string name="ram_1GB">1 GB</string>
+    <string name="ram_2GB">2 GB</string>
+    <string name="ram_3GB">3 GB</string>
+    <string name="ram_4GB">4 GB</string>
+    <string name="ram_4GBplus">more than 4 GB</string>
+    <string name="storage_8GBminus">less than 8 GB</string>
+    <string name="storage_8GB">8 GB</string>
+    <string name="storage_16GB">16 GB</string>
+    <string name="storage_32GB">32 GB</string>
+    <string name="storage_64GB">64 GB</string>
+    <string name="storage_128GB">128 GB</string>
+    <string name="storage_128GBplus">more than 128 GB</string>
+    <string name="unknown">unknown</string>
+    <string name="editor_activity_title">NEW MOBILE</string>
+</resources>

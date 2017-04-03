@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Layout for the editor -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_margin"
+    tools:context="com.xtream.warehouse.EditorActivity">
+
+    <!--Overview category-->
+    <LinearLayout
+        android:id="@+id/container_overview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--Label -->
+        <TextView
+            android:text="@string/category_overview"
+            style="@style/CategoryStyle"/>
+
+        <!-- Input Field-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:paddingLeft="4dp"
+            android:orientation="vertical">
+
+            <!-- Mobile Name Field-->
+            <EditText
+                android:id="@+id/edit_mobile_name"
+                android:hint="@string/hint_mobile_name"
+                android:inputType="textCapWords"
+                style="@style/EditorFieldStyle" />
+
+            <!-- Mobile Company Field-->
+            <EditText
+                android:id="@+id/edit_mobile_company_name"
+                android:hint="@string/hint_phone_company_name"
+                android:inputType="textCapWords"
+                style="@style/EditorFieldStyle" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--Type Category-->
+    <LinearLayout
+        android:id="@+id/container_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--Label-->
+        <TextView
+            android:text="@string/category_type"
+            style="@style/CategoryStyle"/>
+
+        <!-- Input field-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <!-- Type Drop Down Menu-->
+            <Spinner
+                android:id="@+id/spinner_type"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:paddingRight="16dp"
+                android:spinnerMode="dropdown"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Software version-->
+    <LinearLayout
+        android:id="@+id/container_software_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--Label -->
+        <TextView
+            android:text="@string/category_software_version"
+            style="@style/CategoryStyle"/>
+
+        <!-- Input Field-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:paddingLeft="4dp"
+            android:orientation="vertical">
+
+            <!-- Software Version Field-->
+            <EditText
+                android:id="@+id/edit_software_version_field"
+                android:hint="@string/hint_software_version"
+                android:inputType="textCapWords"
+                style="@style/EditorFieldStyle" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--RAM Category-->
+    <LinearLayout
+        android:id="@+id/container_RAM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--Label-->
+        <TextView
+            android:text="@string/category_ram"
+            style="@style/CategoryStyle"/>
+
+        <!-- Input field-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <!-- RAM drop down Menu-->
+            <Spinner
+                android:id="@+id/spinner_ram"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:paddingRight="16dp"
+                android:spinnerMode="dropdown"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--Storage Category-->
+    <LinearLayout
+        android:id="@+id/container_storage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--Label-->
+        <TextView
+            android:text="@string/category_storage"
+            style="@style/CategoryStyle"/>
+
+        <!-- Input field-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <!-- Storage Drop Down Menu-->
+            <Spinner
+                android:id="@+id/spinner_storage"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:paddingRight="16dp"
+                android:spinnerMode="dropdown"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
