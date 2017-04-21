@@ -30,7 +30,7 @@ public final class MobileContract {
         public final static String COLUMN_TYPE = "Type";
 
         //Software Version of Mobile (TYPE: TEXT)
-        public final static String COLUMN_SOFTWARE_VERSION = "Software Version";
+        public final static String COLUMN_SOFTWARE_VERSION = "Version";
 
         //Amount of RAM present in mobile (TYPE: INTEGER)
         public final static String COLUMN_RAM = "RAM";

@@ -1,8 +1,10 @@
 package com.xtream.warehouse;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,26 +13,41 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
+import android.widget.Toast;
+
+import com.xtream.warehouse.data.MobileContract.MobileEntry;
+import com.xtream.warehouse.data.MobileDbHelper;
 
 public class EditorActivity extends AppCompatActivity {
 
-    /** EditText field to enter the mobile's name */
+    /**
+     * EditText field to enter the mobile's name
+     */
     private EditText mMobileNameEditText;
 
-    /** EditText field to enter the mobile's company name */
+    /**
+     * EditText field to enter the mobile's company name
+     */
     private EditText mCompanyEditText;
 
-    /** Spinner field to enter the mobile's type */
+    /**
+     * Spinner field to enter the mobile's type
+     */
     private Spinner mTypeSpinner;
 
-    /** EditText field to enter the mobile's software version */
+    /**
+     * EditText field to enter the mobile's software version
+     */
     private EditText mSoftwareVersionText;
 
-    /** Spinner field to enter the mobile's RAM */
+    /**
+     * Spinner field to enter the mobile's RAM
+     */
     private Spinner mRamSpinner;
 
-    /** Spinner field to enter the mobile's storage */
+    /**
+     * Spinner field to enter the mobile's storage
+     */
     private Spinner mStorageSpinner;
 
     private int mType = 0;
@@ -78,10 +95,10 @@ public class EditorActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selection = (String) parent.getItemAtPosition(position);
-                if (!TextUtils.isEmpty(selection)){
-                    if(selection.equals(getString(R.string.type_smartphone))){
+                if (!TextUtils.isEmpty(selection)) {
+                    if (selection.equals(getString(R.string.type_smartphone))) {
                         mType = 1;
-                    } else if (selection.equals(getString(R.string.type_featurephone))){
+                    } else if (selection.equals(getString(R.string.type_featurephone))) {
                         mType = 2;
                     } else {
                         mType = 0;
@@ -100,28 +117,28 @@ public class EditorActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selection = (String) parent.getItemAtPosition(position);
-                if (!TextUtils.isEmpty(selection)){
-                    if(selection.equals(getString(R.string.ram_1GBminus))){
-                        mType = 1;
-                    } else if (selection.equals(getString(R.string.ram_1GB))){
-                        mType = 2;
-                    } else if (selection.equals(getString(R.string.ram_2GB))){
-                        mType = 3;
-                    } else if (selection.equals(getString(R.string.ram_3GB))){
-                        mType = 4;
-                    } else if (selection.equals(getString(R.string.ram_4GB))){
-                        mType = 5;
-                    } else if (selection.equals(getString(R.string.ram_4GBplus))){
-                        mType = 6;
+                if (!TextUtils.isEmpty(selection)) {
+                    if (selection.equals(getString(R.string.ram_1GBminus))) {
+                        mRam = 1;
+                    } else if (selection.equals(getString(R.string.ram_1GB))) {
+                        mRam = 2;
+                    } else if (selection.equals(getString(R.string.ram_2GB))) {
+                        mRam = 3;
+                    } else if (selection.equals(getString(R.string.ram_3GB))) {
+                        mRam = 4;
+                    } else if (selection.equals(getString(R.string.ram_4GB))) {
+                        mRam = 5;
+                    } else if (selection.equals(getString(R.string.ram_4GBplus))) {
+                        mRam = 6;
                     } else {
-                        mType = 0;
+                        mRam = 0;
                     }
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                mType = 0;
+                mRam = 0;
             }
         });
 
@@ -130,32 +147,70 @@ public class EditorActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selection = (String) parent.getItemAtPosition(position);
-                if (!TextUtils.isEmpty(selection)){
-                    if(selection.equals(getString(R.string.storage_8GBminus))){
-                        mType = 1;
-                    } else if (selection.equals(getString(R.string.storage_8GB))){
-                        mType = 2;
-                    } else if (selection.equals(getString(R.string.storage_16GB))){
-                        mType = 3;
-                    } else if (selection.equals(getString(R.string.storage_32GB))){
-                        mType = 4;
-                    } else if (selection.equals(getString(R.string.storage_64GB))){
-                        mType = 5;
-                    } else if (selection.equals(getString(R.string.storage_128GB))){
-                        mType = 6;
-                    } else if (selection.equals(getString(R.string.storage_128GBplus))){
-                        mType = 6;
+                if (!TextUtils.isEmpty(selection)) {
+                    if (selection.equals(getString(R.string.storage_8GBminus))) {
+                        mStorage = 1;
+                    } else if (selection.equals(getString(R.string.storage_8GB))) {
+                        mStorage = 2;
+                    } else if (selection.equals(getString(R.string.storage_16GB))) {
+                        mStorage = 3;
+                    } else if (selection.equals(getString(R.string.storage_32GB))) {
+                        mStorage = 4;
+                    } else if (selection.equals(getString(R.string.storage_64GB))) {
+                        mStorage = 5;
+                    } else if (selection.equals(getString(R.string.storage_128GB))) {
+                        mStorage = 6;
+                    } else if (selection.equals(getString(R.string.storage_128GBplus))) {
+                        mStorage = 6;
                     } else {
-                        mType = 0;
+                        mStorage = 0;
                     }
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                mType = 0;
+                mStorage = 0;
             }
         });
+    }
+
+    /**
+     * Get user input from editor and save new pet into database.
+     */
+    private void insertMobile() {
+        //Read from input fields
+        //Using trim to eliminate spaces
+
+        String mobileNameString = mMobileNameEditText.getText().toString().trim();
+        String companyString = mCompanyEditText.getText().toString().trim();
+        String softwareVersionString = mSoftwareVersionText.getText().toString().trim();
+
+        //Create database helper
+        MobileDbHelper mDbHelper = new MobileDbHelper(this);
+        //Get database in write mode
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        //Create content values
+        ContentValues values = new ContentValues();
+        values.put(MobileEntry.COLUMN_MOBILE_NAME, mobileNameString);
+        values.put(MobileEntry.COLUMN_COMPANY, companyString);
+        values.put(MobileEntry.COLUMN_TYPE, mType);
+        values.put(MobileEntry.COLUMN_SOFTWARE_VERSION, softwareVersionString);
+        values.put(MobileEntry.COLUMN_RAM, mRam);
+        values.put(MobileEntry.COLUMN_STORAGE, mStorage);
+
+        // Insert a new row for mobile in the database, returning the ID of that new row.
+        long newRowId = db.insert(MobileEntry.TABLE_NAME, null, values);
+
+        //show toast message whether the pet was inserted successfully
+        if (newRowId == -1) {
+            // If the row ID is -1, then there was an error with insertion.
+            Toast.makeText(this, "Error with saving mobile", Toast.LENGTH_SHORT).show();
+        } else {
+            // Otherwise, the insertion was successful and we can display a toast with the row ID.
+            Toast.makeText(this, "Mobile saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -172,7 +227,10 @@ public class EditorActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
-                // Do nothing for now
+                // Save pet to database
+                insertMobile();
+                // Exit activity
+                finish();
                 return true;
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
