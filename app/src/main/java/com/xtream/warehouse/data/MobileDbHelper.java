@@ -36,7 +36,7 @@ public class MobileDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_MOBILES_TABLE);
     }
 
-    // called when the databse is upgraded.
+    // called when the database is upgraded.
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // The database is still at version 1, so there's nothing to do be done here.

@@ -57,7 +57,28 @@ public class CatalogActivity extends AppCompatActivity {
 
         // Perform this raw SQL query "SELECT * FROM pets"
         // to get a Cursor that contains all rows from the pets table.
-        Cursor cursor = db.rawQuery("SELECT * FROM " + MobileEntry.TABLE_NAME, null);
+        // Cursor cursor = db.rawQuery("SELECT * FROM " + MobileEntry.TABLE_NAME, null);
+
+        // QUERY METHOD : Projection, Selection, SelectionARGS and cursor
+        String[] projection = {
+                MobileEntry._ID,
+                MobileEntry.COLUMN_MOBILE_NAME,
+                MobileEntry.COLUMN_COMPANY,
+                MobileEntry.COLUMN_TYPE,
+                MobileEntry.COLUMN_SOFTWARE_VERSION,
+                MobileEntry.COLUMN_RAM,
+                MobileEntry.COLUMN_STORAGE
+        };
+
+        Cursor cursor = db.query(
+                MobileEntry.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null);
+
         try {
             // Display the number of rows in the Cursor (which reflects the number of rows in the
             // pets table in the database).
