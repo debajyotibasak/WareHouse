@@ -71,19 +71,63 @@ public class CatalogActivity extends AppCompatActivity {
         };
 
         Cursor cursor = db.query(
-                MobileEntry.TABLE_NAME,
-                projection,
-                null,
-                null,
-                null,
-                null,
-                null);
+                MobileEntry.TABLE_NAME,     //Table to query
+                projection,                 //The columns to return
+                null,                       //The columns for where clause
+                null,                       //The values for where clause
+                null,                       //Don't group by rows
+                null,                       //Don't filter by row groups
+                null);                      //The sort order
+
+        TextView displayView = (TextView) findViewById(R.id.text_view_item);
 
         try {
-            // Display the number of rows in the Cursor (which reflects the number of rows in the
-            // pets table in the database).
-            TextView displayView = (TextView) findViewById(R.id.text_view_item);
-            displayView.setText("Number of rows in mobile database table: " + cursor.getCount());
+            // Create a header in the Text View that looks like this:
+            //
+            // The mobile table contains <number of rows in Cursor> mobile.
+            // _id - mobile_name - company - type - software - RAM - Storage
+            //
+            // In the while loop below, iterate through the rows of the cursor and display
+            // the information from each column in this order.
+            displayView.setText("The Mobile table contains " + cursor.getCount() + " mobile.\n\n");
+            displayView.append(MobileEntry._ID + " - " +
+                    MobileEntry.COLUMN_MOBILE_NAME + " - " +
+                    MobileEntry.COLUMN_COMPANY + " - " +
+                    MobileEntry.COLUMN_TYPE + " - " +
+                    MobileEntry.COLUMN_SOFTWARE_VERSION + " - " +
+                    MobileEntry.COLUMN_RAM + " - " +
+                    MobileEntry.COLUMN_STORAGE + "\n");
+
+            // Figure out the index of each column
+            int idColumnIndex = cursor.getColumnIndex(MobileEntry._ID);
+            int mobileNameColumnIndex = cursor.getColumnIndex(MobileEntry.COLUMN_MOBILE_NAME);
+            int companyColumnIndex = cursor.getColumnIndex(MobileEntry.COLUMN_COMPANY);
+            int typeColumnIndex = cursor.getColumnIndex(MobileEntry.COLUMN_TYPE);
+            int softwareColumnIndex = cursor.getColumnIndex(MobileEntry.COLUMN_SOFTWARE_VERSION);
+            int ramColumnIndex = cursor.getColumnIndex(MobileEntry.COLUMN_RAM);
+            int storageColumnIndex = cursor.getColumnIndex(MobileEntry.COLUMN_STORAGE);
+
+            // Iterate through all the return rows in cursor
+            while(cursor.moveToNext()){
+                // Use that index to extract the String or Int value of the word
+                // at the current row the cursor is on.
+                int currentID = cursor.getInt(idColumnIndex);
+                String currentMobileName = cursor.getString(mobileNameColumnIndex);
+                String currentCompany = cursor.getString(companyColumnIndex);
+                int currentType = cursor.getInt(typeColumnIndex);
+                String currentSoftware = cursor.getString(softwareColumnIndex);
+                int currentRam = cursor.getInt(ramColumnIndex);
+                int currentStorage = cursor.getInt(storageColumnIndex);
+                // Display the values from each column of the current row in the cursor in the TextView
+                displayView.append(("\n" + currentID + " - " +
+                        currentMobileName + " - " +
+                        currentCompany + " - " +
+                        currentType + " - " +
+                        currentSoftware + " - " +
+                        currentRam + " - " +
+                        currentStorage));
+            }
+
         } finally {
             // Always close the cursor when you're done reading from it. This releases all its
             // resources and makes it invalid.
